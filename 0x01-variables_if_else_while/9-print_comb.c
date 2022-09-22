@@ -9,14 +9,19 @@
  */
 int main(void)
 {
-	int d;
-	char c;
+char c;
 
-	for (d = '0'; d <= '9'; d++)
-		putchar(d)
-	for (c = 'a'; c <= 'f'; c++)
-		putchar(c)
-		putchar('\n')
+for (c = '0'; c <= '9'; c++)
+{
+putchar(c);
 
-	return(0);
+if (c != '9')
+{
+putchar(',');
+putchar(' ');
+}
+}
+putchar('\n');
+
+return(0);
 }
