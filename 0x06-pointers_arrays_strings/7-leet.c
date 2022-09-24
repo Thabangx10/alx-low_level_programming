@@ -20,25 +20,27 @@ char *leet(char *str)
 }
 
 /**
- * leet - encodes a string into 1337
- * @s: string to encode
+ * transform - helper fuction to map a letter with its leet encoding
+ * @x: char to be encoded
  *
- * Return: address of s
+ * Return: the encoded char
  */
 
-char *leet(char *s)
+char transform(char x)
 {
-	int i, j;
-	char a[] = "aAeEoOtTlL";
-	char b[] = "4433007711";
+	int i = 0;
+	char mapping_low[8] = {'o', 'l', '\0', 'e', 'a', '\0', '\0', 't'};
+	char mapping_upper[8] = {'O', 'L', '\0', 'E', 'A', '\0', '\0', 'T'};
+	char replacement = x;
 
-	for (i = 0; *(s + i); i++)
+	while (i < 8)
 	{
-		for (j = 0; j <= 9; j++)
+		if ( x == mapping_low[i] || x == mapping_upper[i])
 		{
-			if (a[j] == *(s + i))
-				*(s + i) = b[j];
+			replacement = i + '0';
+				break;
 		}
+		i++
 	}
-	return (s);
+	return (replacement);
 }
