@@ -9,14 +9,14 @@
  * Return: pointer to copied memory block
  */
 
-char *_memcpy(char *dest, char *src, unsigned int n)
+void *_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned int i = 0;
+	unsigned int index;
+	unsigned char *destination = dest;
+	const unsigned char *source = src;
 
-	for (; i < n; i++)
-	{
-		dest[i] = src [i];
-	}
+	for (index = 0; index < n; index++)
+		destination[index] = source[index];
 
 	return (dest);
 }
