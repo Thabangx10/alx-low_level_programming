@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 /**
  * _memcpy - copies a memory area
  * @dest: memory area to be copied area
