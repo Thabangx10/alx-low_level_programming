@@ -5,7 +5,7 @@
  * @head: head
  * Return: sum of all nodes
  */
-int sum_dlistint(dlistint_t head)
+int sum_dlistint(dlistint_t *head)
 {
 	size_t res = 0;
 
