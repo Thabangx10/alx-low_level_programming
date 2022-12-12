@@ -1,41 +1,52 @@
 #include "lists.h"
 
 /**
- * function - deletes node at index
- * @head: **head of node
- * @index: index to delete
- * Return: update the list with deleted node, (1) on success, Fail(-1)
+ * function - inserts node in index
+ * @h: head
+ * @idx: index
+ * @n: new data for node
+ * Return: list with updated new node
  */
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	unsigned int count = 0;
-	dlistint_t *temp = NULL;
+	unsigned int count = 1;
+	dlistint_t *temp = NULL, *new = NULL;
 
-	if (head == NULL || *head == NULL)
-		return (-1);
-
-	temp = *head;
-
-	if (index == 0)
+	new = malloc(sizeof(dlistint_t));
+	if (new == NULL || h == NULL)
+		return (NULL);
+	new->n = n;
+	temp = *h;
+	if (idx == 0)
 	{
-		*head = (*head) ->next;
-		if (*head != NULL)
-			(*head)->prev = NULL;
-		free(temp);
-		return (1);
+		*h = new;
+		new->next = temp;
+		new->prev = NULL;
+		temp->prev = new;
+		return (new);
 	}
-	while (temp ->next != NULL)
+	while (temp->next != NULL)
 	{
-		if ( count == index)
+		if (count == idx)
 		{
-			temp->next->prev = temp->prev;
-			temp->prev->next = temp->next;
-			free(temp);
-			return (1);
+			new->prev = temp;
+			new->next = temp->next;
+			temp->next = new;
+			new->next->prev = new;
 		}
 		temp = temp->next;
 		count++;
 	}
-
-	return (-1);
+	if (count == idx)
+	{
+		new->prev = temp;
+		new->next = NULL;
+		temp->next = new;
+	}
+	if (count < idx)
+	{
+		free(new);
+		return (NULL);
+	}
+	return (new);
 }
