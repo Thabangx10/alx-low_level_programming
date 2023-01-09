@@ -4,12 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 /**
- * function(hash_node_s) - Node of a hash table
- * @key: The key, string (the 'key' is unique in a hash table).
- * @value: The corresponding value of the key
- * @next: A pointer to the next node within the list
+ * function(hash_node_s) - Nod eof the hash table
+ * @key: the key, string, which is unique in a Hash Table
+ * @value: The corresponding value form the key
+ * @naext: the * to the next node of the list
  */
 typedef struct hash_node_s
 {
@@ -17,13 +16,12 @@ typedef struct hash_node_s
 	char *value;
 	struct hash_node_s *next;
 } hash_node_t;
-
 /**
- * function - The structure of the hash table
+ * function(hash_table_s) - Hash table data structure
  * @size: the size of the array
- * @array: An array of size(@size)
- * Handling - We are going to be using collision handling within our hash table
- * using pointers
+ * @array: the value corresponding to the key
+ * Each cell is a * to first node of the linked listenabling us to
+ * handle the 'Chaining collision'
  */
 typedef struct hash_table_s
 {
