@@ -1,4 +1,4 @@
-#include "hash_tables.t"
+#include "hash_tables.h"
 
 /**
  * Function - Deletes the hash table
