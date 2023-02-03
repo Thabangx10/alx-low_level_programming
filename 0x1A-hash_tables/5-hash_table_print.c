@@ -5,26 +5,33 @@
  * @size: size of the array
  * Return - A dictionary format of the the hash table
  */
-hash_table_t *hash_table_create(unsigned long int size)
+void hash_table_print(const hash_table_t *ht)
 {
-	unsigned long int idx = 0;
-	hash_table_t *new_table = NULL;
+	hash_node_t *node;
+	unsigned long int i;
+	unsigned char comma_flag = 0;
 
-	new_table = malloc(sizeof(hash_table_t));
-	if (new_table == NULL)
-		return (NULL);
-	new_table->array = malloc(sizeof(hash_node_t *) * size);
-	if (new_table->array == NULL)
+	if (ht == NULL)
+		return;
+
+	printf("{");
+	for (i = 0; i < ht->size; i++)
 	{
-		free(new_table);
-		new_table = NULL;
-		return (NULL);
+		if (ht->array[i] != NULL)
+		{
+			if (comma_flag == 1)
+				printf(", ");
+
+			node = ht->array[i];
+			while (node != NULL)
+			{
+				printf("'%s': '%s'", node->key, node->value);
+				node = node->next;
+				if (node != NULL)
+					printf(", ");
+			}
+			comma_flag = 1;
+		}
 	}
-	while (idx < size)
-	{
-		new_table->array[idx] = NULL;
-		idx++;
-	}
-	new_table->size = size;
-	return (new_table);
+	printf("}\n");
 }
