@@ -2,30 +2,29 @@
 
 /**
  * Function - prints out the hash table
- * @ht: hash table
+ * @size: size of the array
  * Return - A dictionary format of the the hash table
  */
-void hash_table_print(const hash_table_t *ht)
+hash_table_t *hash_table_create(unsigned long int size)
 {
-	unsigned long int i = 0;
-	hash_node_t *temp = NULL;
+	unsigned long int idx = 0;
+	hash_table_t *new_table = NULL;
 
-	if (ht == NULL)
-		return;
-
-	printf("{");
-	while (i < ht->size)
+	new_table = malloc(sizeof(hash_table_t));
+	if (new_table == NULL)
+		return (NULL);
+	new_table->array = malloc(sizeof(hash_node_t *) * size);
+	if (new_table->array == NULL)
 	{
-		temp = ht->array[i];
-		while (temp)
-		{
-			printf("'%s' : '%s'", temp->key, temp->value);
-			if (ht->array[i + 1] == NULL)
-				break;
-			printf(", ");
-			temp = temp->next;
-		}
-		i++;
+		free(new_table);
+		new_table = NULL;
+		return (NULL);
 	}
-	printf("}\n");
+	while (idx < size)
+	{
+		new_table->array[idx] = NULL;
+		idx++;
+	}
+	new_table->size = size;
+	return (new_table);
 }
